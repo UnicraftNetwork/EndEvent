@@ -1,0 +1,4 @@
+crystals: false
+beds: false
+allowed-projectiles:
+  - ENDER_PEARL

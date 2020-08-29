@@ -1,0 +1,7 @@
+name: EndEvent
+version: ${project.version}
+main: cl.bgmp.endevent.EndEvent
+api-version: '1.16'
+authors: [ BGMP ]
+description: Plugin for handling the End event
+website: https://unicraft.cl/
