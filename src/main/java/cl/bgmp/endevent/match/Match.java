@@ -64,8 +64,8 @@ public class Match extends ListeningSetAdapter<Player> implements Listener {
   @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
   public void onPlayerChangeWorld(PlayerChangedWorldEvent event) {
     Player player = event.getPlayer();
-    if (player.getWorld().getEnvironment() == World.Environment.THE_END) add(player);
-    else remove(player);
+    if (player.getWorld().getEnvironment() == World.Environment.THE_END) this.add(player);
+    else this.remove(player);
   }
 
   @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
@@ -79,7 +79,7 @@ public class Match extends ListeningSetAdapter<Player> implements Listener {
   }
 
   public void startIn(@NotNull Duration duration) {
-    state = MatchState.STARTING;
+    this.state = MatchState.STARTING;
     new Countdown(
         duration,
         "EndEvent match starting in {0}.",
@@ -96,8 +96,8 @@ public class Match extends ListeningSetAdapter<Player> implements Listener {
 
   public void start() {
     this.start = Instant.now();
-    modules.forEach(MatchModule::enable);
-    state = MatchState.PLAYING;
+    this.modules.forEach(MatchModule::enable);
+    this.state = MatchState.PLAYING;
 
     Bukkit.getPluginManager().callEvent(new MatchStartEvent(this));
   }
@@ -107,8 +107,8 @@ public class Match extends ListeningSetAdapter<Player> implements Listener {
 
     this.disable();
     this.end = Instant.now();
-    modules.forEach(MatchModule::disable);
-    state = MatchState.FINISHED;
+    this.modules.forEach(MatchModule::disable);
+    this.state = MatchState.FINISHED;
     Bukkit.broadcastMessage(endMessage);
   }
 
