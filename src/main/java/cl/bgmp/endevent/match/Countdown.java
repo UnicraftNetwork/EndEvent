@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * Represents a countdown which will broadcast its elapsed progress in spans of 1 minute, precising
- * to spans of 10 seconds only when under 60 seconds, and of 1 when under 10
+ * to spans of 10 seconds only when under 60 seconds, and of 1 when under 5
  */
 public abstract class Countdown implements Finishable {
   private Instant start;
