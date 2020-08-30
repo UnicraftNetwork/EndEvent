@@ -68,7 +68,6 @@ public final class EndEvent extends JavaPlugin {
   public void onEnable() {
     endEvent = this;
 
-    getConfig().options().copyDefaults(true);
     saveConfig();
     reloadConfig();
     if (config == null) {
