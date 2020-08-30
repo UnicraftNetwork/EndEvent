@@ -1,5 +1,6 @@
 package cl.bgmp.endevent.modules;
 
+import cl.bgmp.endevent.ChatConstant;
 import cl.bgmp.endevent.EndEvent;
 import cl.bgmp.endevent.events.MatchStartEvent;
 import cl.bgmp.endevent.match.Match;
@@ -45,15 +46,15 @@ public class EnderDragonMatchModule implements MatchModule, Listener {
     Player killer = enderDragon.getKiller();
 
     if (killer != null) {
-      this.match.end("The EndEvent has finished. Winner: " + killer.getDisplayName());
+      this.match.end(ChatConstant.MATCH_WINNER.getFormattedMessage(ChatColor.RED) + killer.getDisplayName());
     } else {
-      this.match.end("The EndEvent has finished. The Dragon died for unknown reasons.");
+      this.match.end(ChatConstant.MATCH_UNKNOWN_WINNER.getFormattedMessage(ChatColor.RED));
     }
   }
 
   @SuppressWarnings("deprecation")
   private void modifyEventDragon() {
-    this.enderDragon.setCustomName(ChatColor.RED + "Event Dragon");
+    this.enderDragon.setCustomName(ChatColor.RED + ChatConstant.DRAGON_NAME.getMessage());
     this.enderDragon.setMaxHealth(enderDragon.getHealth() * 3);
     this.enderDragon.setHealth(enderDragon.getMaxHealth());
 

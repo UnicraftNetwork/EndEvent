@@ -1,5 +1,6 @@
 package cl.bgmp.endevent.match;
 
+import cl.bgmp.endevent.ChatConstant;
 import cl.bgmp.endevent.EndEvent;
 import java.time.Duration;
 import java.time.Instant;
@@ -100,7 +101,7 @@ public abstract class Countdown implements Finishable {
           if (toBroadcast != -1)
             Bukkit.broadcastMessage(
                 timerMessage.replace(
-                    "{0}", toBroadcast + (toBroadcast == 1 ? " second" : " seconds")));
+                    "{0}", toBroadcast + (toBroadcast == 1 ? ChatConstant.MISC_SECOND.getMessage() : ChatConstant.MISC_SECONDS.getMessage())));
         }
       }
     };

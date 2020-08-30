@@ -1,8 +1,10 @@
 package cl.bgmp.endevent.modules;
 
+import cl.bgmp.endevent.ChatConstant;
 import cl.bgmp.endevent.EndEvent;
 import cl.bgmp.endevent.match.Match;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -22,7 +24,7 @@ public class RandomMobsMatchModule extends RandomMobsSummoner implements MatchMo
     return new BukkitRunnable() {
       @Override
       public void run() {
-        Bukkit.broadcastMessage("generando basura...");
+        Bukkit.broadcastMessage(ChatConstant.MISC_GENERATING_MOBS.getFormattedMessage(ChatColor.RED));
         generateRandomStuffAround(match.getPlayers());
       }
     };

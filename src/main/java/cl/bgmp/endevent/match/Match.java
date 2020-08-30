@@ -1,5 +1,6 @@
 package cl.bgmp.endevent.match;
 
+import cl.bgmp.endevent.ChatConstant;
 import cl.bgmp.endevent.Config;
 import cl.bgmp.endevent.EndEvent;
 import cl.bgmp.endevent.events.MatchFinishEvent;
@@ -20,6 +21,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.UUID;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -105,9 +107,9 @@ public class Match extends ListeningSetAdapter<Player> implements Listener {
     this.state = MatchState.STARTING;
     new Countdown(
         duration,
-        "EndEvent match starting in {0}.",
-        "EndEvent match started!",
-        "EndEvent start cancelled.") {
+            ChatConstant.MATCH_STARTING.getFormattedMessage(ChatColor.RED),
+            ChatConstant.MATCH_STARTED.getFormattedMessage(ChatColor.RED),
+            ChatConstant.MATCH_CANCELLED.getFormattedMessage(ChatColor.RED)) {
       @Override
       public void whenFinished() {
         enable();
