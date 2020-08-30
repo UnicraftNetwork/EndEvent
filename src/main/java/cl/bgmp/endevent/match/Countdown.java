@@ -101,7 +101,11 @@ public abstract class Countdown implements Finishable {
           if (toBroadcast != -1)
             Bukkit.broadcastMessage(
                 timerMessage.replace(
-                    "{0}", toBroadcast + (toBroadcast == 1 ? ChatConstant.MISC_SECOND.getMessage() : ChatConstant.MISC_SECONDS.getMessage())));
+                    "{0}",
+                    toBroadcast
+                        + (toBroadcast == 1
+                            ? ChatConstant.MISC_SECOND.getMessage()
+                            : ChatConstant.MISC_SECONDS.getMessage())));
         }
       }
     };

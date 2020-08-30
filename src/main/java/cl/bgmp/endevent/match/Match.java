@@ -107,9 +107,9 @@ public class Match extends ListeningSetAdapter<Player> implements Listener {
     this.state = MatchState.STARTING;
     new Countdown(
         duration,
-            ChatConstant.MATCH_STARTING.getFormattedMessage(ChatColor.RED),
-            ChatConstant.MATCH_STARTED.getFormattedMessage(ChatColor.RED),
-            ChatConstant.MATCH_CANCELLED.getFormattedMessage(ChatColor.RED)) {
+        ChatConstant.MATCH_STARTING.getFormattedMessage(ChatColor.RED),
+        ChatConstant.MATCH_STARTED.getFormattedMessage(ChatColor.RED),
+        ChatConstant.MATCH_CANCELLED.getFormattedMessage(ChatColor.RED)) {
       @Override
       public void whenFinished() {
         enable();

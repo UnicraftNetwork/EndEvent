@@ -46,7 +46,8 @@ public class EnderDragonMatchModule implements MatchModule, Listener {
     Player killer = enderDragon.getKiller();
 
     if (killer != null) {
-      this.match.end(ChatConstant.MATCH_WINNER.getFormattedMessage(ChatColor.RED) + killer.getDisplayName());
+      this.match.end(
+          ChatConstant.MATCH_WINNER.getFormattedMessage(ChatColor.RED) + killer.getDisplayName());
     } else {
       this.match.end(ChatConstant.MATCH_UNKNOWN_WINNER.getFormattedMessage(ChatColor.RED));
     }

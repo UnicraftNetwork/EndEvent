@@ -49,7 +49,6 @@ public class MatchManager implements Listener {
 
   @EventHandler
   public void onMatchFinish(MatchFinishEvent event) {
-    Bukkit.broadcastMessage("Duración: " + event.getMatch().getDuration().toString());
     prepareNewMatch();
   }
 }
