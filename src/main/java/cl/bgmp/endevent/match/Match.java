@@ -37,6 +37,7 @@ public class Match extends ListeningSetAdapter<Player> implements Listener {
   private UUID uuid = UUID.randomUUID();
   private MatchState state = MatchState.IDLE;
   private Set<MatchModule> modules = Sets.newHashSet();
+  private Set<Player> observers = Sets.newHashSet();
   private World endWorld;
   private Instant start;
   private Instant end;
@@ -61,10 +62,25 @@ public class Match extends ListeningSetAdapter<Player> implements Listener {
     return endWorld;
   }
 
+  public boolean isObserving(Player player) {
+    return observers.contains(player);
+  }
+
+  public void addObserver(Player player) {
+    observers.add(player);
+    this.remove(player);
+  }
+
+  public void removeObserver(Player player) {
+    observers.remove(player);
+    this.add(player);
+  }
+
   @Override
   public boolean isValid(Player participant) {
     return participant.getWorld().getEnvironment()
-        == World.Environment.THE_END; // FIXME: check for this.getEndWorld() instead
+            == World.Environment.THE_END // FIXME: check for this.getEndWorld() instead
+        && !observers.contains(participant);
   }
 
   @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

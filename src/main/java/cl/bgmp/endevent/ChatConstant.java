@@ -3,38 +3,43 @@ package cl.bgmp.endevent;
 import org.bukkit.ChatColor;
 
 public enum ChatConstant {
-    NO_PERMISSION("No tienes permiso para ejecutar este comando."),
-    NO_CONSOLE("Necesitas ser un jugador para ejecutar este comando."),
+  NO_PERMISSION("No tienes permiso para ejecutar este comando."),
+  NO_CONSOLE("Necesitas ser un jugador para ejecutar este comando."),
 
-    MATCH_CANNOT_START("La partida no puede ser iniciada en este momento."),
-    MATCH_STARTING("¡El evento del end iniciando en {0}!"),
-    MATCH_STARTED("¡El evento ha iniciado!"),
-    MATCH_CANCELLED("El evento del end  ha sido cancelado."),
-    MATCH_WINNER("¡El evento ha finalizado!. Winner: "),
-    MATCH_UNKNOWN_WINNER("The EndEvent has finished. The Dragon died for unknown reasons."),
+  MATCH_CANNOT_START("La partida no puede ser iniciada en este momento."),
+  MATCH_STARTING("¡El evento del end iniciando en {0}!"),
+  MATCH_STARTED("¡El evento ha iniciado!"),
+  MATCH_CANCELLED("El evento del end  ha sido cancelado."),
+  MATCH_WINNER("¡El evento ha finalizado!. Winner: "),
+  MATCH_UNKNOWN_WINNER("The EndEvent has finished. The Dragon died for unknown reasons."),
 
-    MISC_SECOND("segundo"),
-    MISC_SECONDS("segundos"),
-    MISC_GENERATING_MOBS("Generando mobs, ¡Cuidado!"),
+  NOW_SPECTATING("Ahora estás specteando el evento!"),
+  ALREADY_SPECTATING("Ya estás psectando el evento!"),
+  NOW_NOT_SPECTATING("Ya no estás spectando el evento!"),
+  ALREADY_NOT_SPECTATING("Ya estás participando del evento!"),
 
-    DEBUG_HEALTH_BEFORE("Vida del dragon antes: "),
-    DEBUG_HEALTH_AFTER("Vida del dragon ahora: "),
+  MISC_SECOND("segundo"),
+  MISC_SECONDS("segundos"),
+  MISC_GENERATING_MOBS("Generando mobs, ¡Cuidado!"),
 
-    DRAGON_NAME("Event Dragon"),
+  DEBUG_HEALTH_BEFORE("Vida del dragon antes: "),
+  DEBUG_HEALTH_AFTER("Vida del dragon ahora: "),
 
-    PREFIX(ChatColor.WHITE + "[" + ChatColor.GOLD + "End Event" + ChatColor.WHITE + "] ");
+  DRAGON_NAME("Event Dragon"),
 
-    private String message;
+  PREFIX(ChatColor.WHITE + "[" + ChatColor.GOLD + "End Event" + ChatColor.WHITE + "] ");
 
-    ChatConstant(String message) {
-        this.message = message;
-    }
+  private String message;
 
-    public String getMessage() {
-        return message;
-    }
+  ChatConstant(String message) {
+    this.message = message;
+  }
 
-    public String getFormattedMessage(ChatColor color) {
-        return PREFIX.getMessage() + color + message;
-    }
+  public String getMessage() {
+    return message;
+  }
+
+  public String getFormattedMessage(ChatColor color) {
+    return PREFIX.getMessage() + color + message;
+  }
 }
