@@ -10,14 +10,16 @@ public final class EndEventConfig implements Config {
   private FileConfiguration config;
   private File datafolder;
   private Set<EntityType> allowedProjectiles;
+  private boolean allowWithers;
   private boolean allowBeds;
   private boolean allowCrystals;
 
   public EndEventConfig(FileConfiguration config, File datafolder) {
     this.config = config;
     this.datafolder = datafolder;
+    this.allowWithers = config.getBoolean("withers");
     this.allowedProjectiles =
-        config.getStringList("projectiles.allowed").stream()
+        config.getStringList("allowed-projectiles").stream()
             .map(EntityType::valueOf)
             .collect(Collectors.toSet());
     this.allowBeds = config.getBoolean("beds");
@@ -32,6 +34,11 @@ public final class EndEventConfig implements Config {
   @Override
   public boolean crystalsAreAllowed() {
     return allowCrystals;
+  }
+
+  @Override
+  public boolean withersAreAllowed() {
+    return allowWithers;
   }
 
   @Override

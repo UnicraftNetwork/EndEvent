@@ -6,9 +6,11 @@ import cl.bgmp.endevent.events.MatchFinishEvent;
 import cl.bgmp.endevent.events.MatchStartEvent;
 import cl.bgmp.endevent.modules.BanBedsMatchModule;
 import cl.bgmp.endevent.modules.BanEndCrystalsMatchModule;
+import cl.bgmp.endevent.modules.BanWithersMatchModule;
 import cl.bgmp.endevent.modules.EnderDragonMatchModule;
 import cl.bgmp.endevent.modules.MatchModule;
 import cl.bgmp.endevent.modules.ProjectilesMatchModule;
+import cl.bgmp.endevent.modules.RandomMobsMatchModule;
 import cl.bgmp.endevent.util.ListeningSetAdapter;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
@@ -30,9 +32,8 @@ import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
 /** Represents an EndEvent Match */
+// TODO: Add observers
 public class Match extends ListeningSetAdapter<Player> implements Listener {
-  private Plugin plugin;
-
   private UUID uuid = UUID.randomUUID();
   private MatchState state = MatchState.IDLE;
   private Set<MatchModule> modules = Sets.newHashSet();
@@ -47,7 +48,11 @@ public class Match extends ListeningSetAdapter<Player> implements Listener {
 
     final Config config = EndEvent.get().getConfiguration();
 
-    addModules(new ProjectilesMatchModule(this), new EnderDragonMatchModule(this));
+    addModules(
+        new ProjectilesMatchModule(this),
+        new EnderDragonMatchModule(this),
+        new RandomMobsMatchModule(this.plugin, this));
+    if (!config.withersAreAllowed()) addModules(new BanWithersMatchModule(this));
     if (!config.bedsAreAllowed()) addModules(new BanBedsMatchModule(this));
     if (!config.crystalsAreAllowed()) addModules(new BanEndCrystalsMatchModule(this));
   }
@@ -58,13 +63,15 @@ public class Match extends ListeningSetAdapter<Player> implements Listener {
 
   @Override
   public boolean isValid(Player participant) {
-    return participant.getWorld().getEnvironment() == World.Environment.THE_END;
+    return participant.getWorld().getEnvironment()
+        == World.Environment.THE_END; // FIXME: check for this.getEndWorld() instead
   }
 
   @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
   public void onPlayerChangeWorld(PlayerChangedWorldEvent event) {
     Player player = event.getPlayer();
-    if (player.getWorld().getEnvironment() == World.Environment.THE_END) this.add(player);
+    if (player.getWorld().getEnvironment() == World.Environment.THE_END)
+      this.add(player); // FIXME: check for this.getEndWorld() instead
     else this.remove(player);
   }
 

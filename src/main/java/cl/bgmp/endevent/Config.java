@@ -8,5 +8,7 @@ public interface Config {
 
   boolean crystalsAreAllowed();
 
+  boolean withersAreAllowed();
+
   Set<EntityType> getAllowedProjectiles();
 }
